@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-PROFILE="xxxxxxx"
+PROFILE="azcenit"
 REGION="us-east-1"   # CloudFront es global, pero mantenemos coherencia
 
 echo "=== Creando/activando Origin Access Control en CloudFront ==="

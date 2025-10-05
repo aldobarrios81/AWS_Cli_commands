@@ -1,7 +1,7 @@
 #!/bin/bash
 
-PROFILE=${1:-xxxxxxx}
-REGION=${2:-us-east-1}
+PROFILE="azcenit"
+REGION="us-east-1"
 
 echo "=== Habilitando CloudWatch Metrics Logging para Athena WorkGroups en $REGION ==="
 echo "Perfil: $PROFILE"

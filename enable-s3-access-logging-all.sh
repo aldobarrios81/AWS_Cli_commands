@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-PROFILE="xxxxxxxx"
+PROFILE="azcenit"
 CENTRAL_REGION="us-east-1"
 
 # ID de cuenta para un nombre único

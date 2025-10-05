@@ -1,8 +1,8 @@
 #!/bin/bash
 # enable-trustedadvisor-realtime-alerts.sh
 # Perfil y región
-PROFILE=${1:-xxxxxx}
-REGION=${2:-us-east-1}
+PROFILE="azcenit"
+REGION="us-east-1"
 
 echo "=== Configurando alertas en tiempo real para Trusted Advisor ==="
 echo "Perfil: $PROFILE | Región: $REGION"
@@ -29,12 +29,22 @@ RULE_ARN=$(aws events put-rule \
 echo "✔ Regla EventBridge creada: $RULE_NAME ($RULE_ARN)"
 
 # Dar permisos al EventBridge para publicar al SNS Topic
-aws sns subscribe \
+# Nota: Agregar suscripción de email después manualmente si es necesario
+# aws sns subscribe \
+#     --topic-arn $TOPIC_ARN \
+#     --protocol email \
+#     --notification-endpoint tu-email@ejemplo.com \
+#     --profile $PROFILE \
+#     --region $REGION
+
+# Dar permisos a EventBridge para publicar al SNS Topic
+aws sns add-permission \
     --topic-arn $TOPIC_ARN \
-    --protocol email \
-    --notification-endpoint felipe.castillo@azlogica.com \
+    --label "EventBridgePublishPermission" \
+    --aws-account-id $(aws sts get-caller-identity --profile $PROFILE --query Account --output text) \
+    --action-name Publish \
     --profile $PROFILE \
-    --region $REGION
+    --region $REGION 2>/dev/null || echo "⚠ Permisos ya configurados o error menor"
 
 aws events put-targets \
     --rule $RULE_NAME \

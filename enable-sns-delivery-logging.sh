@@ -2,7 +2,7 @@
 # enable-sns-delivery-logging-fixed.sh
 # Habilita Delivery Logging solo en subscriptions válidas soportadas
 
-PROFILE="xxxxxxx"
+PROFILE="azcenit"
 REGION="us-east-1"
 
 echo "=== Habilitando SNS Delivery Logging en todas las subscriptions ==="

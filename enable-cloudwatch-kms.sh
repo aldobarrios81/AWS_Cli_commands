@@ -4,9 +4,9 @@
 
 set -e
 
-PROFILE=${1:-xxxxxxx}
-REGION=${2:-us-east-1}
-KMS_ALIAS=${3:-cloudwatch-logs-key}
+PROFILE="azcenit"
+REGION="us-east-1"
+KMS_ALIAS="cloudwatch-logs-key"
 
 echo "=== Habilitando KMS SSE para CloudWatch Log Groups en $REGION ==="
 echo "Perfil: $PROFILE | Alias de KMS: $KMS_ALIAS"
@@ -26,6 +26,48 @@ if [ -z "$KMS_KEY" ]; then
     aws kms create-alias --profile $PROFILE --region $REGION \
         --alias-name "alias/$KMS_ALIAS" --target-key-id "$KMS_KEY"
     echo "   ✔ KMS Key creada: $KMS_KEY"
+    
+    # Crear política para CloudWatch Logs
+    echo "-> Configurando política de KMS para CloudWatch Logs..."
+    KMS_POLICY='{
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "Enable IAM User Permissions",
+                "Effect": "Allow",
+                "Principal": {
+                    "AWS": "arn:aws:iam::'$ACCOUNT_ID':root"
+                },
+                "Action": "kms:*",
+                "Resource": "*"
+            },
+            {
+                "Sid": "Allow CloudWatch Logs",
+                "Effect": "Allow",
+                "Principal": {
+                    "Service": "logs.'$REGION'.amazonaws.com"
+                },
+                "Action": [
+                    "kms:Encrypt",
+                    "kms:Decrypt",
+                    "kms:ReEncrypt*",
+                    "kms:GenerateDataKey*",
+                    "kms:DescribeKey"
+                ],
+                "Resource": "*",
+                "Condition": {
+                    "ArnEquals": {
+                        "kms:EncryptionContext:aws:logs:arn": "arn:aws:logs:'$REGION':'$ACCOUNT_ID':log-group:*"
+                    }
+                }
+            }
+        ]
+    }'
+    
+    aws kms put-key-policy --profile $PROFILE --region $REGION \
+        --key-id "$KMS_KEY" --policy-name default --policy "$KMS_POLICY"
+    
+    echo "   ✔ Política de KMS configurada"
 else
     echo "✔ KMS Key ya existe: $KMS_KEY"
 fi

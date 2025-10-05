@@ -1,5 +1,5 @@
 #!/bin/bash
-PROFILE="xxxxxx"
+PROFILE="azcenit"
 REGION="us-east-1"
 ROLE_NAME="AWS-TrustedSupportAccess"
 

@@ -3,7 +3,7 @@
 # Limpia grupos IAM sin usuarios de forma segura
 # Perfil: xxxxxx | Región: us-east-1
 
-PROFILE="xxxxxxxx"
+PROFILE="azcenit"
 REGION="us-east-1"
 
 echo "=== Limpiando grupos IAM sin usuarios en $REGION ==="
