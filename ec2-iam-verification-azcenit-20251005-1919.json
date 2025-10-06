@@ -1,0 +1,22 @@
+{
+  "verification_timestamp": "2025-10-05T19:19:56-05:00",
+  "profile": "azcenit",
+  "region": "us-east-1",
+  "account_id": "044616935970",
+  "summary": {
+    "total_instances": 1,
+    "instances_with_profile": 0,
+    "instances_without_profile": 1,
+    "running_without_profile": 1,
+    "stopped_without_profile": 0,
+    "compliance": "NON_COMPLIANT"
+  },
+  "recommendations": [
+    "Adjuntar perfiles IAM a todas las instancias EC2",
+    "Crear perfiles específicos por función (web, db, worker)",
+    "Implementar principio de menor privilegio",
+    "Usar políticas AWS managed cuando sea posible",
+    "Configurar CloudWatch y SSM para monitoreo",
+    "Auditar permisos regularmente"
+  ]
+}

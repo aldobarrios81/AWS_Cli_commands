@@ -5,7 +5,7 @@
 
 set -e
 
-PROFILE="azbeacons"
+PROFILE="azcenit"
 REGION="us-east-1"
 LOG_BUCKET_SUFFIX="-access-logs"
 
