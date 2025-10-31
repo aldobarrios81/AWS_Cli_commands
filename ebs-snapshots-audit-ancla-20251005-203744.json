@@ -1,0 +1,25 @@
+{
+  "audit": {
+    "timestamp": "2025-10-06T01:37:44Z",
+    "profile": "ancla",
+    "account_id": "621394757845",
+    "audit_type": "EBS_SNAPSHOTS_AUDIT",
+    "regions_scanned": 1,
+    "active_regions": [
+      "us-east-1"
+    ],
+    "summary": {
+      "total_volumes": 0,
+      "total_snapshots": 0,
+      "volumes_with_snapshots": 0,
+      "volumes_without_snapshots": 0,
+      "recent_snapshots": 0,
+      "backup_compliance_score": 100
+    },
+    "volumes": [],
+    "snapshots": [],
+    "recommendations": [
+      "Excelente: Estrategia de backup bien configurada"
+    ]
+  }
+}

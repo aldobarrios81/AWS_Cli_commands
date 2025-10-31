@@ -1,8 +1,10 @@
 #!/bin/bash
-# verify-root-account-usage-monitoring.sh
+# verify-root-account-usage-metrokia.sh
 # Verificar el estado de la implementación de CIS 3.3 - Root Account Usage Monitoring
+# Para el perfil metrokia
 
-PROFILE="AZLOGICA"
+# Configuración
+PROFILE="metrokia"
 REGION="us-east-1"
 
 # Colores para output
@@ -11,20 +13,24 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
 NC='\033[0m'
 
+echo ""
 echo "=================================================================="
-echo -e "${BLUE}🔍 VERIFICACIÓN CIS 3.3 - ROOT ACCOUNT USAGE MONITORING${NC}"
+echo -e "${CYAN}🔍 VERIFICACIÓN CIS 3.3 - ROOT ACCOUNT USAGE MONITORING${NC}"
+echo -e "${PURPLE}PERFIL: $PROFILE${NC}"
 echo "=================================================================="
-echo "Perfil: $PROFILE | Región: $REGION"
+echo "Región: $REGION"
 echo ""
 
 # Obtener Account ID
-echo -e "${BLUE}🔐 Verificando credenciales...${NC}"
+echo -e "${BLUE}🔐 Verificando credenciales para $PROFILE...${NC}"
 ACCOUNT_ID=$(aws sts get-caller-identity --profile "$PROFILE" --region "$REGION" --query 'Account' --output text 2>/dev/null)
 
 if [ $? -ne 0 ] || [ -z "$ACCOUNT_ID" ]; then
     echo -e "${RED}❌ ERROR: No se puede acceder al perfil '$PROFILE'${NC}"
+    echo -e "${YELLOW}   Verifica que el perfil esté configurado correctamente${NC}"
     echo ""
     exit 1
 fi
@@ -142,24 +148,38 @@ if command -v date >/dev/null 2>&1; then
     
     echo -e "${BLUE}   Buscando eventos desde: $START_TIME${NC}"
     
-    ROOT_EVENTS=$(aws logs filter-log-events \
-        --profile "$PROFILE" --region "$REGION" \
-        --start-time $(date -d "$START_TIME" +%s)000 \
-        --end-time $(date -d "$END_TIME" +%s)000 \
-        --filter-pattern '{ $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" }' \
-        --query 'events[].{Time:eventTime,Event:eventName,SourceIP:sourceIPAddress}' \
-        --output text 2>/dev/null | head -10)
-    
-    if [ ! -z "$ROOT_EVENTS" ]; then
-        echo -e "${YELLOW}   ⚠️ Eventos de cuenta root encontrados:${NC}"
-        echo "$ROOT_EVENTS" | while read event_time event_name source_ip; do
-            if [ ! -z "$event_time" ]; then
-                echo -e "${YELLOW}      • $(date -d @$((event_time/1000)) '+%Y-%m-%d %H:%M:%S') - $event_name desde $source_ip${NC}"
+    # Buscar eventos de root en todos los log groups
+    if [ ! -z "$LOG_GROUPS" ] && [ "$LOG_GROUPS" != "None" ]; then
+        ROOT_EVENTS_FOUND=0
+        for group in $LOG_GROUPS; do
+            ROOT_EVENTS=$(aws logs filter-log-events \
+                --profile "$PROFILE" --region "$REGION" \
+                --log-group-name "$group" \
+                --start-time $(date -d "$START_TIME" +%s)000 \
+                --end-time $(date -d "$END_TIME" +%s)000 \
+                --filter-pattern '{ $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" }' \
+                --query 'events[].{Time:eventTime,Event:eventName,SourceIP:sourceIPAddress}' \
+                --output text 2>/dev/null | head -5)
+            
+            if [ ! -z "$ROOT_EVENTS" ]; then
+                ROOT_EVENTS_FOUND=1
+                echo -e "${YELLOW}   ⚠️ Eventos de cuenta root encontrados en $group:${NC}"
+                echo "$ROOT_EVENTS" | while read event_time event_name source_ip; do
+                    if [ ! -z "$event_time" ]; then
+                        READABLE_TIME=$(date -d @$((event_time/1000)) '+%Y-%m-%d %H:%M:%S' 2>/dev/null || echo "Tiempo no disponible")
+                        echo -e "${YELLOW}      • $READABLE_TIME - $event_name desde $source_ip${NC}"
+                    fi
+                done
             fi
         done
-        echo -e "${RED}   🚨 REVISAR: Se detectó uso de la cuenta root${NC}"
+        
+        if [ $ROOT_EVENTS_FOUND -eq 0 ]; then
+            echo -e "${GREEN}   ✅ No se detectaron eventos de cuenta root en las últimas 24 horas${NC}"
+        else
+            echo -e "${RED}   🚨 REVISAR: Se detectó uso de la cuenta root${NC}"
+        fi
     else
-        echo -e "${GREEN}   ✅ No se detectaron eventos de cuenta root en las últimas 24 horas${NC}"
+        echo -e "${YELLOW}   ⚠️ No se pueden verificar eventos (no hay CloudTrail Log Groups)${NC}"
     fi
 else
     echo -e "${YELLOW}   ⚠️ No se puede verificar eventos recientes (comando 'date' no disponible)${NC}"
@@ -167,7 +187,7 @@ fi
 echo ""
 
 echo "=================================================================="
-echo -e "${GREEN}🎯 RESUMEN DE VERIFICACIÓN COMPLETADO${NC}"
+echo -e "${GREEN}🎯 VERIFICACIÓN COMPLETADA PARA METROKIA${NC}"
 echo "=================================================================="
 echo ""
 echo -e "${YELLOW}📋 EXPLICACIÓN DE ESTADOS DE ALARMAS:${NC}"
@@ -183,10 +203,10 @@ echo "• Siempre investigue cualquier uso no autorizado de la cuenta root"
 echo "• Mantenga habilitado MFA en la cuenta root"
 echo "• Use usuarios IAM para actividades operativas diarias"
 echo ""
-echo -e "${BLUE}🔔 ACCIONES RECOMENDADAS:${NC}"
+echo -e "${BLUE}🔔 ACCIONES RECOMENDADAS PARA METROKIA:${NC}"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "1. Si no hay suscripciones de email, configurarlas:"
-echo "   aws sns subscribe --topic-arn [SNS_ARN] --protocol email --notification-endpoint [EMAIL]"
+echo "   aws sns subscribe --topic-arn [SNS_ARN] --protocol email --notification-endpoint [EMAIL] --profile metrokia"
 echo ""
 echo "2. Monitorear regularmente el estado de las alarmas"
 echo ""

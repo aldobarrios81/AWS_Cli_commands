@@ -1,0 +1,56 @@
+{
+  "report_timestamp": "$(date -Iseconds)",
+  "report_type": "lambda_dead_letter_queues_assessment",
+  "profiles_analyzed": [
+    {
+      "profile": "ancla",
+      "account_id": "621394757845",
+      "lambda_functions_count": 32,
+      "dlq_queues_count": 0,
+      "status": "NO_DLQ_CONFIGURED",
+      "regions_with_lambda": ["us-east-1","us-west-2","eu-west-1"]],
+      "regions_with_dlq": [""]],
+      "permissions_verified": true,
+      "recommendations": ["Crear DLQ para funciones Lambda","Configurar DLQ en funciones críticas"]],
+      "assessment_date": "2025-10-05T19:39:43-05:00"
+    }
+,
+    {
+      "profile": "azbeacons",
+      "account_id": "742385231361",
+      "lambda_functions_count": 0,
+      "dlq_queues_count": 0,
+      "status": "NO_LAMBDA_FUNCTIONS",
+      "regions_with_lambda": [""]],
+      "regions_with_dlq": [""]],
+      "permissions_verified": true,
+      "recommendations": [""]],
+      "assessment_date": "2025-10-05T19:39:58-05:00"
+    }
+,
+    {
+      "profile": "azcenit",
+      "account_id": "044616935970",
+      "lambda_functions_count": 6,
+      "dlq_queues_count": 0,
+      "status": "NO_DLQ_CONFIGURED",
+      "regions_with_lambda": ["us-east-1"]],
+      "regions_with_dlq": [""]],
+      "permissions_verified": false,
+      "recommendations": ["Crear DLQ para funciones Lambda","Configurar DLQ en funciones críticas","Verificar permisos IAM para SQS y Lambda"]],
+      "assessment_date": "2025-10-05T19:40:13-05:00"
+    }
+  ],
+  "summary": {
+    "assessment_completed": true,
+    "total_profiles_analyzed": 3,
+    "report_generation_date": "$(date -Iseconds)"
+  },
+  "next_steps": [
+    "Revisar funciones Lambda con problemas de configuración",
+    "Configurar DLQ para funciones operativas",
+    "Implementar monitoreo CloudWatch para DLQ",
+    "Establecer políticas de retención apropiadas",
+    "Crear procesos de análisis de errores regulares"
+  ]
+}

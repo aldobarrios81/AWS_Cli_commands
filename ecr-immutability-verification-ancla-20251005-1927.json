@@ -1,0 +1,22 @@
+{
+  "verification_timestamp": "2025-10-05T19:27:39-05:00",
+  "profile": "ancla",
+  "region": "us-east-1",
+  "account_id": "621394757845",
+  "summary": {
+    "total_repositories": 1,
+    "immutable_repositories": 1,
+    "mutable_repositories": 0,
+    "repositories_with_scanning": 1,
+    "repositories_with_encryption": 1,
+    "immutability_compliance": "FULLY_COMPLIANT"
+  },
+  "security_recommendations": [
+    "Habilitar tag immutability en todos los repositorios",
+    "Configurar scan automático on push",
+    "Implementar políticas de lifecycle para limpieza",
+    "Usar encriptación KMS para repositorios sensibles",
+    "Configurar políticas de acceso restrictivas",
+    "Monitorear vulnerabilidades regularmente"
+  ]
+}

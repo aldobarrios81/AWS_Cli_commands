@@ -1,0 +1,22 @@
+{
+  "verification_timestamp": "2025-10-05T19:45:14-05:00",
+  "profile": "ancla",
+  "account_id": "621394757845",
+  "regions_analyzed": 1,
+  "active_regions": ["us-east-1"]],
+  "summary": {
+    "total_repositories": 1,
+    "kms_encrypted_repositories": 0,
+    "aes256_repositories": 1,
+    "total_kms_keys": 0,
+    "kms_compliance": "NON_COMPLIANT"
+  },
+  "recommendations": [
+    "Migrar repositorios AES256 a cifrado KMS",
+    "Crear claves KMS dedicadas para ECR",
+    "Implementar políticas de cifrado corporativas",
+    "Configurar rotación automática de claves",
+    "Monitorear uso de claves KMS",
+    "Establecer controles de acceso granular"
+  ]
+}

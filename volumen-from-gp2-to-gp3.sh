@@ -1,7 +1,7 @@
 #!/bin/bash
 
 REGION="us-east-1"
-PROFILE="azcenit"
+PROFILE="ancla"
 
 echo "=== Actualizando volúmenes EBS de gp2 a gp3 en $REGION ==="
 
