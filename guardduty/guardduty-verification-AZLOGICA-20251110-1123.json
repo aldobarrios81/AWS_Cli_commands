@@ -1,0 +1,31 @@
+{
+  "verification_timestamp": "2025-11-10T11:23:15-05:00",
+  "profile": "AZLOGICA",
+  "region": "us-east-1",
+  "account_id": "669153057384",
+  "guardduty_status": "ENABLED",
+  "detector_id": "6cbc89ca08987b071459d98fd6c94147",
+  "finding_frequency": "FIFTEEN_MINUTES",
+  "service_role": "arn:aws:iam::669153057384:role/aws-service-role/guardduty.amazonaws.com/AWSServiceRoleForAmazonGuardDuty",
+  "created_at": "2021-04-27T13:45:41.629Z",
+  "updated_at": "2025-11-10T16:22:38.279Z",
+  "features": {
+    "total_available": 10,
+    "enabled": 9,
+    "disabled": 1
+  },
+  "recent_findings": {
+    "count_last_7_days": 0
+  },
+  "notification_rules": 0,
+  "security_score": 14,
+  "compliance": "COMPLIANT",
+  "recommendations": [
+    
+    "Habilitar características avanzadas disponibles",
+    "Configurar notificaciones de EventBridge",
+    "Revisar hallazgos regularmente",
+    "Configurar automated response para hallazgos críticos",
+    "Implementar dashboard de monitoreo"
+  ]
+}

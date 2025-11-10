@@ -1,0 +1,23 @@
+{
+  "verification_timestamp": "2025-11-03T13:02:17-05:00",
+  "profile": "AZLOGICA",
+  "account_id": "669153057384",
+  "summary": {
+    "support_roles_found": 2,
+    "recommended_role_exists": true,
+    "recommended_role_name": "AWS-TrustedSupportAccess",
+    "support_api_accessible": "true",
+    "compliance_status": "COMPLIANT"
+  },
+  "found_roles": [
+"AWS-TrustedSupportAccess,AWSServiceRoleForSupport"
+  ],
+  "recommendations": [
+    "Crear rol AWS-TrustedSupportAccess si no existe",
+    "Adjuntar política AWSSupportAccess al rol",
+    "Configurar trust policy para support.amazonaws.com",
+    "Revisar permisos de usuarios para asumir rol de soporte",
+    "Documentar procedimientos de escalación a AWS Support",
+    "Considerar plan de soporte Business o Enterprise"
+  ]
+}

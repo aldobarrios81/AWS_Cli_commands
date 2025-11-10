@@ -1,6 +1,0 @@
-{
-  "name": "default",
-  "roleARN": "arn:aws:iam::044616935970:role/AWSConfigRole",
-  "recordingGroup": {
-    "allSupported": true,
-

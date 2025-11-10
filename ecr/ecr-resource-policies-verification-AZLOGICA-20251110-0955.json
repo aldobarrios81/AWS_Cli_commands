@@ -1,0 +1,27 @@
+{
+  "verification_timestamp": "2025-11-10T09:55:14-05:00",
+  "profile": "AZLOGICA",
+  "region": "us-east-1",
+  "account_id": "669153057384",
+  "summary": {
+    "total_repositories": 3,
+    "repositories_with_policies": 2,
+    "repositories_without_policies": 1,
+    "repositories_with_restrictive_policies": 0,
+    "repositories_with_open_policies": 0,
+    "policy_compliance": "PARTIAL_COMPLIANCE"
+  },
+  "security_recommendations": [
+    "Configurar Resource Policies restrictivas en todos los repositorios",
+    "Limitar acceso solo a cuentas específicas autorizadas",
+    "Evitar políticas que permitan acceso público (*)", 
+    "Implementar principio de menor privilegio",
+    "Revisar y auditar políticas regularmente",
+    "Habilitar logging de acceso para monitoreo",
+    "Usar roles específicos en lugar de permisos amplios"
+  ],
+  "remediation_commands": [
+    "./limit-all-ecr-repos.sh AZLOGICA",
+    "aws ecr set-repository-policy --repository-name REPO_NAME --policy-text file://restrictive-policy.json --profile AZLOGICA"
+  ]
+}

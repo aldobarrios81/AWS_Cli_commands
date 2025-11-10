@@ -1,0 +1,31 @@
+{
+  "verification_timestamp": "2025-11-10T12:05:05-05:00",
+  "profile": "metrokia",
+  "region": "us-east-1",
+  "account_id": "848576886895",
+  "guardduty_status": "ENABLED",
+  "detector_id": "3ecd3745f73811f69ef39d9516670ee1",
+  "finding_frequency": "FIFTEEN_MINUTES",
+  "service_role": "arn:aws:iam::848576886895:role/aws-service-role/guardduty.amazonaws.com/AWSServiceRoleForAmazonGuardDuty",
+  "created_at": "2025-11-10T16:14:16.047Z",
+  "updated_at": "2025-11-10T17:04:47.392Z",
+  "features": {
+    "total_available": 10,
+    "enabled": 10,
+    "disabled": 0
+  },
+  "recent_findings": {
+    "count_last_7_days": 0
+  },
+  "notification_rules": 1,
+  "security_score": 16,
+  "compliance": "COMPLIANT",
+  "recommendations": [
+    
+    
+    
+    "Revisar hallazgos regularmente",
+    "Configurar automated response para hallazgos críticos",
+    "Implementar dashboard de monitoreo"
+  ]
+}

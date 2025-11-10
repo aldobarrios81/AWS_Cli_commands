@@ -1,0 +1,30 @@
+{
+  "verification_timestamp": "2025-11-10T11:26:43-05:00",
+  "profile": "AZLOGICA",
+  "region": "us-east-1",
+  "account_id": "669153057384",
+  "guardduty_detector_id": "6cbc89ca08987b071459d98fd6c94147",
+  "sns_topic": {
+    "configured": true,
+    "topic_arn": "arn:aws:sns:us-east-1:669153057384:guardduty-realtime-alerts",
+    "display_name": "GuardDuty Security Alerts",
+    "subscriptions_confirmed": 0,
+    "subscriptions_pending": 0
+  },
+  "eventbridge_rules": {
+    "total_rules": 1,
+    "high_severity_rule": "GuardDuty-HighSeverity-Alerts",
+    "medium_severity_rule": "not_configured",
+    "crypto_rule": "not_configured"
+  },
+  "alert_score": 5,
+  "compliance": "NEEDS_IMPROVEMENT",
+  "recommendations": [
+    "Configurar y confirmar suscripciones email/SMS",
+    "Configurar reglas de EventBridge para todas las severidades",
+    
+    "Probar las alertas regularmente",
+    "Configurar escalamiento para alertas críticas",
+    "Documentar procedimientos de respuesta"
+  ]
+}

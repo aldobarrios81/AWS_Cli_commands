@@ -1,0 +1,56 @@
+{
+  "verification_timestamp": "2025-11-10T11:57:52-05:00",
+  "profile": "AZLOGICA",
+  "region": "us-east-1",
+  "account_id": "669153057384",
+  "security_hub_status": "ENABLED",
+  "hub_arn": "arn:aws:securityhub:us-east-1:669153057384:hub/default",
+  "subscribed_at": "2025-02-25T20:54:45.438Z",
+  "auto_enable_controls": true,
+  "standards": {
+    "total_enabled": 2,
+    "details": [
+  {
+    "arn": "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0",
+    "status": "READY"
+  },
+  {
+    "arn": "arn:aws:securityhub:us-east-1::standards/aws-foundational-security-best-practices/v/1.0.0",
+    "status": "READY"
+  }
+]
+  },
+  "controls": {
+    "total": 0,
+    "enabled": 0,
+    "disabled": 0,
+    "compliance_percentage": 0
+  },
+  "findings_last_7_days": {
+    "total": 0,
+    "critical": ,
+    "high": ,
+    "medium": ,
+    "low": 
+  },
+  "integrations": {
+    "third_party_count": 0,
+    "guardduty_integrated": true,
+    "config_integrated": true
+  },
+  "alerting": {
+    "eventbridge_rules": 0
+  },
+  "security_score": 6,
+  "compliance": "COMPLIANT",
+  "recommendations": [
+    
+    
+    
+    
+    "Configurar alertas de EventBridge",
+    "Revisar y remediar hallazgos regularmente",
+    "Configurar automated response para hallazgos críticos",
+    "Implementar dashboard de monitoreo"
+  ]
+}

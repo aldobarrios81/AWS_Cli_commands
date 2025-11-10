@@ -1,0 +1,18 @@
+{
+  "verification_timestamp": "2025-11-10T11:23:56-05:00",
+  "profile": "AZLOGICA",
+  "region": "us-east-1",
+  "account_id": "669153057384",
+  "guardduty_detector_id": "6cbc89ca08987b071459d98fd6c94147",
+  "sns_topic_configured": false,
+  "eventbridge_rules_configured": false,
+  "subscriptions_count": 0,
+  "compliance": "NON_COMPLIANT",
+  "recommendations": [
+    "Configurar SNS Topic para alertas de GuardDuty",
+    "Crear reglas de EventBridge para diferentes severidades",
+    "Configurar suscripciones email/SMS",
+    "Probar las alertas con findings de prueba"
+  ],
+  "remediation_command": "./enable-guardduty-realtime-alerts.sh AZLOGICA your-email@domain.com"
+}

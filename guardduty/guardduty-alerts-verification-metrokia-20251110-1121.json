@@ -1,0 +1,18 @@
+{
+  "verification_timestamp": "2025-11-10T11:21:05-05:00",
+  "profile": "metrokia",
+  "region": "us-east-1",
+  "account_id": "848576886895",
+  "guardduty_detector_id": "3ecd3745f73811f69ef39d9516670ee1",
+  "sns_topic_configured": false,
+  "eventbridge_rules_configured": false,
+  "subscriptions_count": 0,
+  "compliance": "NON_COMPLIANT",
+  "recommendations": [
+    "Configurar SNS Topic para alertas de GuardDuty",
+    "Crear reglas de EventBridge para diferentes severidades",
+    "Configurar suscripciones email/SMS",
+    "Probar las alertas con findings de prueba"
+  ],
+  "remediation_command": "./enable-guardduty-realtime-alerts.sh metrokia your-email@domain.com"
+}

@@ -1,0 +1,18 @@
+{
+  "verification_timestamp": "2025-11-10T11:57:15-05:00",
+  "profile": "metrokia",
+  "region": "us-east-1",
+  "account_id": "848576886895",
+  "security_hub_status": "DISABLED",
+  "standards_enabled": 0,
+  "controls_total": 0,
+  "controls_enabled": 0,
+  "compliance": "NON_COMPLIANT",
+  "recommendations": [
+    "Habilitar Security Hub para gestión centralizada de seguridad",
+    "Configurar estándares de seguridad (AWS Foundational, CIS)",
+    "Habilitar integraciones con GuardDuty y otros servicios",
+    "Configurar alertas para hallazgos críticos"
+  ],
+  "remediation_command": "./enable-securityhub-auto-enable.sh metrokia"
+}
